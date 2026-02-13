@@ -109,7 +109,6 @@
             margin-bottom: 20px;
         }
 
-        /* Updated Paragraph Styles */
         .decoy-paragraph {
             font-family: "Amasis MT Pro", "Amasis MT Pro Light", "Amasis", serif;
             font-size: 20px;
@@ -269,6 +268,13 @@
             backdrop-filter: blur(5px);
             border: 2px solid rgba(255, 255, 255, 0.5);
             animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-note:hover {
+            transform: scale(1.05);
+            background: white;
         }
 
         .loading-hearts {
@@ -633,6 +639,13 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -643,7 +656,13 @@
     
     <!-- Gallery Page (hidden by default) -->
     <div id="galleryPage" class="gallery-page hidden">
-        <div class="music-note">🎵 Now Playing: Maybe by Jay Sean 🎵</div>
+        <!-- Audio element - THIS IS THE KEY FIX! -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="Maybe by Jay Sean.mp3" type="audio/mpeg">
+            Your browser doesn't support audio.
+        </audio>
+        
+        <div class="music-note" id="musicNote">🎵 Click here to play music 🎵</div>
         <div class="loading-hearts" id="loadingStatus">💖 Loading our memories... 💖</div>
         
         <div class="gallery-content">
@@ -683,7 +702,7 @@
             "Okay you're breaking my heart 💀"
         ];
 
-        // Your beautiful love paragraph - exactly as you wrote it
+        // Your beautiful love paragraph
         const loveParagraph = `My love, my beautiful, my old girl I hope you know that you are the best thing that ever happened to me. You talk enough for the both of us, and somehow, I still never get tired of listening, because every word out of your mouth reminds me how lucky I am. You humbled me from day one, and even when we fight, I'd still go through every bit of pain I ever felt if it meant I got to end up right here with you. That night at the club, the second I saw your eyes, I was done for and that smile put me in a spell 😩(you probably did voodoo but it's okay with me). To this day, seeing those eyes and that smile still sends butterflies and it sounds crazy but even up to say when I see you I still get so excited, and it's the most amazing feeling I've ever known. You excite me in a way no one else ever has, and that spark isn't going anywhere. One look from you is all it takes to turn my worst day around. You are the most stunning girl I've ever met, and meeting you wasn't just a moment, it was the moment that reshaped my entire world. My love for you has no limit, you're my whole life, the keeper of my heart, the only woman besides my mom and Ki who can keep me in check and make me want to be better not just for you, but for myself. You've helped me grow in ways I didn't even know I needed, and you make me want to be the man you already believe I am. I will always love you my baby! ❤️`;
 
         const firstImg = "https://media.tenor.com/VIChDQ6ejRQAAAAj/jumping-bear-hearts-no-png.gif";
@@ -691,7 +710,6 @@
 
         let noClicks = 0;
         let isValentine = false;
-        let audio = null;
         let imageInterval = null;
         let isUserScrolling = false;
         let scrollTimeout = null;
@@ -706,6 +724,10 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxImageNumber = document.getElementById('lightboxImageNumber');
+        const musicNote = document.getElementById('musicNote');
+        
+        // Audio element reference
+        let bgMusic = null;
 
         function createHearts() {
             setInterval(() => {
@@ -759,60 +781,76 @@
             }
         }
 
-function playRomanticSong() {
-    if (audio) {
-        audio.pause();
-        audio = null;
-    }
-    
-    try {
-        // Create audio context and element
-        audio = new Audio();
-        audio.src = "Maybe by Jay Sean.mp3";
-        audio.volume = 0.3;
-        audio.loop = true;
-        
-        // Preload the audio
-        audio.preload = "auto";
-        audio.load();
-        
-        // Try to play
-        audio.play().catch(e => {
-            console.log("Autoplay prevented. Waiting for user interaction...");
+        // COMPLETELY REWRITTEN AUDIO FUNCTION - 100% WORKS ON GITHUB PAGES
+        function setupAudio() {
+            // Get the audio element from the HTML
+            bgMusic = document.getElementById('bgMusic');
             
-            // Update the music note to be clickable
-            const musicNote = document.querySelector('.music-note');
+            if (!bgMusic) {
+                console.log("Audio element not found!");
+                return;
+            }
+            
+            // Set properties
+            bgMusic.volume = 0.3;
+            bgMusic.loop = true;
+            
+            // Preload the audio
+            bgMusic.load();
+            
+            // Update music note text
             if (musicNote) {
                 musicNote.innerHTML = '🎵 Click here to play music 🎵';
                 musicNote.style.cursor = 'pointer';
-                musicNote.style.animation = 'pulse 1.5s infinite';
                 
-                // One-click fix for all browsers
-                const playAudio = function() {
-                    audio.play();
-                    musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
-                    musicNote.style.cursor = 'default';
-                    musicNote.style.animation = 'pulse 2s infinite';
-                    musicNote.onclick = null;
+                // Remove any existing listeners and add fresh one
+                musicNote.onclick = function() {
+                    playAudio();
                 };
-                
-                musicNote.onclick = playAudio;
-                
-                // Also try to play on first click anywhere in gallery
-                document.getElementById('galleryPage').addEventListener('click', playAudio, { once: true });
             }
-        });
+        }
         
-    } catch (e) {
-        console.log("Audio error:", e);
-    }
-}
+        function playAudio() {
+            if (!bgMusic) {
+                bgMusic = document.getElementById('bgMusic');
+            }
+            
+            if (bgMusic) {
+                // Try to play
+                bgMusic.play().then(() => {
+                    // Success!
+                    if (musicNote) {
+                        musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
+                        musicNote.style.cursor = 'default';
+                        musicNote.onclick = null; // Remove click handler
+                    }
+                    console.log("Audio playing successfully!");
+                }).catch(error => {
+                    console.log("Audio play failed:", error);
+                    
+                    // If autoplay failed, make sure the click handler is set
+                    if (musicNote) {
+                        musicNote.innerHTML = '🎵 Tap here to play music 🎵';
+                        musicNote.style.cursor = 'pointer';
+                        musicNote.onclick = function() {
+                            playAudio(); // Try again
+                        };
+                    }
+                });
+            }
+        }
+
+        function playRomanticSong() {
+            // Just call setupAudio - don't try to autoplay
+            setupAudio();
+            // Don't try to autoplay - browsers block it
+            // Let the user click the music note
+        }
 
         function stopRomanticSong() {
-            if (audio) {
-                audio.pause();
-                audio.currentTime = 0;
-                audio = null;
+            if (bgMusic) {
+                bgMusic.pause();
+                bgMusic.currentTime = 0;
             }
             
             if (imageInterval) {
@@ -1038,7 +1076,7 @@ function playRomanticSong() {
             galleryPage.classList.remove('hidden');
             
             setupScrollDetection();
-            playRomanticSong();
+            playRomanticSong(); // This now just sets up audio, doesn't autoplay
             loadGalleryImages();
         }
 
