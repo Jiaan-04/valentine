@@ -759,22 +759,52 @@
             }
         }
 
-        function playRomanticSong() {
-            if (audio) {
-                audio.pause();
-                audio = null;
-            }
-            
-            try {
-                // Using "Maybe by Jay Sean.mp3" - exactly as shown in your file listing
-                audio = new Audio("Maybe by Jay Sean.mp3");
-                audio.volume = 0.4;
-                audio.loop = true;
-                audio.play().catch(e => console.log("Audio play failed:", e));
-            } catch (e) {
-                console.log("Audio error:", e);
-            }
+function playRomanticSong() {
+    if (audio) {
+        audio.pause();
+        audio = null;
+    }
+    
+    try {
+        audio = new Audio();
+        audio.src = "Maybe by Jay Sean.mp3";
+        audio.volume = 0.3; // Slightly lower volume
+        audio.loop = true;
+        
+        // IMPORTANT: Load the audio first
+        audio.load();
+        
+        // Play with user interaction context
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Audio autoplay blocked:", error);
+                // Show a "Tap to play music" message
+                showMusicPrompt();
+            });
         }
+    } catch (e) {
+        console.log("Audio error:", e);
+    }
+}
+
+// Add this new function to handle browser autoplay blocking
+function showMusicPrompt() {
+    const musicNote = document.querySelector('.music-note');
+    if (musicNote) {
+        musicNote.innerHTML = '🔇 Tap here to play music 🎵';
+        musicNote.style.cursor = 'pointer';
+        musicNote.onclick = function() {
+            if (audio) {
+                audio.play();
+                this.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
+                this.style.cursor = 'default';
+                this.onclick = null;
+            }
+        };
+    }
+}
 
         function stopRomanticSong() {
             if (audio) {
