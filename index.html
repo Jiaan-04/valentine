@@ -766,43 +766,45 @@ function playRomanticSong() {
     }
     
     try {
+        // Create audio context and element
         audio = new Audio();
         audio.src = "Maybe by Jay Sean.mp3";
-        audio.volume = 0.3; // Slightly lower volume
+        audio.volume = 0.3;
         audio.loop = true;
         
-        // IMPORTANT: Load the audio first
+        // Preload the audio
+        audio.preload = "auto";
         audio.load();
         
-        // Play with user interaction context
-        const playPromise = audio.play();
+        // Try to play
+        audio.play().catch(e => {
+            console.log("Autoplay prevented. Waiting for user interaction...");
+            
+            // Update the music note to be clickable
+            const musicNote = document.querySelector('.music-note');
+            if (musicNote) {
+                musicNote.innerHTML = '🎵 Click here to play music 🎵';
+                musicNote.style.cursor = 'pointer';
+                musicNote.style.animation = 'pulse 1.5s infinite';
+                
+                // One-click fix for all browsers
+                const playAudio = function() {
+                    audio.play();
+                    musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
+                    musicNote.style.cursor = 'default';
+                    musicNote.style.animation = 'pulse 2s infinite';
+                    musicNote.onclick = null;
+                };
+                
+                musicNote.onclick = playAudio;
+                
+                // Also try to play on first click anywhere in gallery
+                document.getElementById('galleryPage').addEventListener('click', playAudio, { once: true });
+            }
+        });
         
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Audio autoplay blocked:", error);
-                // Show a "Tap to play music" message
-                showMusicPrompt();
-            });
-        }
     } catch (e) {
         console.log("Audio error:", e);
-    }
-}
-
-// Add this new function to handle browser autoplay blocking
-function showMusicPrompt() {
-    const musicNote = document.querySelector('.music-note');
-    if (musicNote) {
-        musicNote.innerHTML = '🔇 Tap here to play music 🎵';
-        musicNote.style.cursor = 'pointer';
-        musicNote.onclick = function() {
-            if (audio) {
-                audio.play();
-                this.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
-                this.style.cursor = 'default';
-                this.onclick = null;
-            }
-        };
     }
 }
 
