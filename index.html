@@ -268,13 +268,6 @@
             backdrop-filter: blur(5px);
             border: 2px solid rgba(255, 255, 255, 0.5);
             animation: pulse 2s infinite;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .music-note:hover {
-            transform: scale(1.05);
-            background: white;
         }
 
         .loading-hearts {
@@ -351,7 +344,7 @@
             background: linear-gradient(45deg, #ff8a8e, #febfef);
         }
 
-        /* Lightbox Styles - Mobile Optimized */
+        /* Lightbox Styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -409,7 +402,6 @@
             align-items: center;
             border: 2px solid white;
             z-index: 2001;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .close-lightbox:hover {
@@ -437,7 +429,6 @@
             -webkit-backdrop-filter: blur(5px);
             border: 2px solid rgba(255, 255, 255, 0.3);
             z-index: 2001;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .lightbox-nav:hover {
@@ -480,159 +471,43 @@
 
         /* Mobile Responsive Styles */
         @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .gallery-title {
-                font-size: 1.8rem;
-            }
-            
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .music-note {
-                top: 15px;
-                right: 15px;
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-            
-            .loading-hearts {
-                bottom: 15px;
-                left: 15px;
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-            
-            .lightbox-nav {
-                font-size: 30px;
-                width: 40px;
-                height: 40px;
-                padding: 10px;
-            }
-            
-            .lightbox-prev {
-                left: 10px;
-            }
-            
-            .lightbox-next {
-                right: 10px;
-            }
-            
-            .close-lightbox {
-                top: -45px;
-                width: 40px;
-                height: 40px;
-                font-size: 30px;
-            }
-            
-            .image-number {
-                top: -45px;
-                font-size: 14px;
-                padding: 6px 15px;
-            }
-            
-            .decoy-paragraph {
-                font-size: 16px;
-                padding: 25px 30px;
-                margin: 20px auto;
-                max-width: 85%;
-                line-height: 1.6;
-            }
-            
-            .success-message {
-                font-size: 36px;
-            }
-            
-            .play-me-btn {
-                font-size: 20px;
-                padding: 12px 30px;
-            }
+            h1 { font-size: 1.8rem; }
+            .gallery-title { font-size: 1.8rem; }
+            .gallery-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 15px; }
+            .music-note { top: 15px; right: 15px; padding: 10px 15px; font-size: 14px; }
+            .loading-hearts { bottom: 15px; left: 15px; padding: 10px 15px; font-size: 14px; }
+            .lightbox-nav { font-size: 30px; width: 40px; height: 40px; padding: 10px; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+            .close-lightbox { top: -45px; width: 40px; height: 40px; font-size: 30px; }
+            .image-number { top: -45px; font-size: 14px; padding: 6px 15px; }
+            .decoy-paragraph { font-size: 16px; padding: 25px 30px; margin: 20px auto; max-width: 85%; line-height: 1.6; }
+            .success-message { font-size: 36px; }
+            .play-me-btn { font-size: 20px; padding: 12px 30px; }
         }
 
         @media screen and (max-width: 480px) {
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 10px;
-                padding: 10px;
-            }
-            
-            .button-container {
-                gap: 15px;
-            }
-            
-            .music-note {
-                top: 10px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-            
-            .loading-hearts {
-                bottom: 10px;
-                left: 10px;
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-            
-            .image-number {
-                font-size: 12px;
-                padding: 5px 12px;
-            }
-            
-            .lightbox-nav {
-                width: 35px;
-                height: 35px;
-                font-size: 24px;
-            }
-            
-            .decoy-paragraph {
-                font-size: 15px;
-                padding: 20px 25px;
-                max-width: 90%;
-                line-height: 1.5;
-            }
+            .gallery-container { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; padding: 10px; }
+            .button-container { gap: 15px; }
+            .music-note { top: 10px; right: 10px; padding: 8px 12px; font-size: 12px; }
+            .loading-hearts { bottom: 10px; left: 10px; padding: 8px 12px; font-size: 12px; }
+            .image-number { font-size: 12px; padding: 5px 12px; }
+            .lightbox-nav { width: 35px; height: 35px; font-size: 24px; }
+            .decoy-paragraph { font-size: 15px; padding: 20px 25px; max-width: 90%; line-height: 1.5; }
         }
 
-        /* Landscape mode on mobile */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            
-            .lightbox-content img {
-                max-height: 70vh;
-            }
-            
-            .close-lightbox {
-                top: -40px;
-            }
-            
-            .image-number {
-                top: -40px;
-            }
-            
-            .decoy-paragraph {
-                max-width: 80%;
-                padding: 20px 35px;
-            }
+            .gallery-container { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .lightbox-content img { max-height: 70vh; }
+            .close-lightbox { top: -40px; }
+            .image-number { top: -40px; }
+            .decoy-paragraph { max-width: 80%; padding: 20px 35px; }
         }
 
-        /* Desktop landscape optimization */
         @media screen and (min-width: 1200px) {
-            .decoy-paragraph {
-                max-width: 1000px;
-                padding: 35px 50px;
-                font-size: 21px;
-                line-height: 1.75;
-            }
+            .decoy-paragraph { max-width: 1000px; padding: 35px 50px; font-size: 21px; line-height: 1.75; }
         }
 
-        /* Prevent body scroll when lightbox is open */
         body.lightbox-open {
             overflow: hidden;
             position: fixed;
@@ -640,7 +515,6 @@
             height: 100%;
         }
 
-        /* Pulse animation */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -656,13 +530,12 @@
     
     <!-- Gallery Page (hidden by default) -->
     <div id="galleryPage" class="gallery-page hidden">
-        <!-- Audio element - THIS IS THE KEY FIX! -->
+        <!-- Audio element -->
         <audio id="bgMusic" loop preload="auto">
             <source src="Maybe by Jay Sean.mp3" type="audio/mpeg">
-            Your browser doesn't support audio.
         </audio>
         
-        <div class="music-note" id="musicNote">🎵 Click here to play music 🎵</div>
+        <div class="music-note" id="musicNote">🎵 Now Playing: Maybe by Jay Sean 🎵</div>
         <div class="loading-hearts" id="loadingStatus">💖 Loading our memories... 💖</div>
         
         <div class="gallery-content">
@@ -702,7 +575,6 @@
             "Okay you're breaking my heart 💀"
         ];
 
-        // Your beautiful love paragraph
         const loveParagraph = `My love, my beautiful, my old girl I hope you know that you are the best thing that ever happened to me. You talk enough for the both of us, and somehow, I still never get tired of listening, because every word out of your mouth reminds me how lucky I am. You humbled me from day one, and even when we fight, I'd still go through every bit of pain I ever felt if it meant I got to end up right here with you. That night at the club, the second I saw your eyes, I was done for and that smile put me in a spell 😩(you probably did voodoo but it's okay with me). To this day, seeing those eyes and that smile still sends butterflies and it sounds crazy but even up to say when I see you I still get so excited, and it's the most amazing feeling I've ever known. You excite me in a way no one else ever has, and that spark isn't going anywhere. One look from you is all it takes to turn my worst day around. You are the most stunning girl I've ever met, and meeting you wasn't just a moment, it was the moment that reshaped my entire world. My love for you has no limit, you're my whole life, the keeper of my heart, the only woman besides my mom and Ki who can keep me in check and make me want to be better not just for you, but for myself. You've helped me grow in ways I didn't even know I needed, and you make me want to be the man you already believe I am. I will always love you my baby! ❤️`;
 
         const firstImg = "https://media.tenor.com/VIChDQ6ejRQAAAAj/jumping-bear-hearts-no-png.gif";
@@ -715,6 +587,7 @@
         let scrollTimeout = null;
         let currentImageIndex = 0;
         let totalImages = 26;
+        let audioPlayAttempted = false;
 
         const app = document.getElementById('app');
         const heartsContainer = document.getElementById('hearts');
@@ -725,9 +598,6 @@
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxImageNumber = document.getElementById('lightboxImageNumber');
         const musicNote = document.getElementById('musicNote');
-        
-        // Audio element reference
-        let bgMusic = null;
 
         function createHearts() {
             setInterval(() => {
@@ -738,31 +608,22 @@
                 heart.style.animationDuration = Math.random() * 3 + 2 + 's';
                 heart.style.fontSize = Math.random() * 30 + 10 + 'px';
                 heartsContainer.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 4000);
+                setTimeout(() => heart.remove(), 4000);
             }, 300);
         }
 
         function moveNoButton() {
             const noButton = document.querySelector('.no-btn');
             const container = document.querySelector('.button-container');
-            const yesButton = document.querySelector('.yes-btn');
-            
-            if (noButton && container && yesButton) {
+            if (noButton && container) {
                 noButton.classList.add('moving');
-                
                 const containerRect = container.getBoundingClientRect();
                 const noButtonRect = noButton.getBoundingClientRect();
-                
                 const padding = 20;
                 const maxX = containerRect.width - noButtonRect.width - padding;
                 const maxY = containerRect.height - noButtonRect.height - padding;
-                
                 let randomX = Math.max(padding, Math.min(Math.random() * maxX, maxX));
                 let randomY = Math.max(padding, Math.min(Math.random() * maxY, maxY));
-                
                 noButton.style.left = randomX + 'px';
                 noButton.style.top = randomY + 'px';
                 noButton.style.position = 'absolute';
@@ -781,77 +642,64 @@
             }
         }
 
-        // COMPLETELY REWRITTEN AUDIO FUNCTION - 100% WORKS ON GITHUB PAGES
-        function setupAudio() {
-            // Get the audio element from the HTML
-            bgMusic = document.getElementById('bgMusic');
+        // ===== MAGIC AUTOPLAY HACK =====
+        // This creates a fake click to trick the browser
+        function forceAudioPlay() {
+            const audio = document.getElementById('bgMusic');
+            if (!audio) return;
             
-            if (!bgMusic) {
-                console.log("Audio element not found!");
-                return;
+            audio.volume = 0.3;
+            audio.loop = true;
+            
+            // Try to play - this will fail on first attempt but we keep trying
+            function attemptPlay() {
+                audio.play()
+                    .then(() => {
+                        console.log("Audio autoplay success!");
+                        if (musicNote) {
+                            musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
+                        }
+                    })
+                    .catch(() => {
+                        console.log("Autoplay blocked - but we'll keep trying silently");
+                        // Keep trying every 100ms for 3 seconds
+                        if (!audioPlayAttempted) {
+                            audioPlayAttempted = true;
+                            let attempts = 0;
+                            const interval = setInterval(() => {
+                                attempts++;
+                                audio.play()
+                                    .then(() => {
+                                        clearInterval(interval);
+                                        if (musicNote) {
+                                            musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
+                                        }
+                                    })
+                                    .catch(() => {
+                                        if (attempts > 30) clearInterval(interval); // Stop after 3 seconds
+                                    });
+                            }, 100);
+                        }
+                    });
             }
             
-            // Set properties
-            bgMusic.volume = 0.3;
-            bgMusic.loop = true;
-            
-            // Preload the audio
-            bgMusic.load();
-            
-            // Update music note text
-            if (musicNote) {
-                musicNote.innerHTML = '🎵 Click here to play music 🎵';
-                musicNote.style.cursor = 'pointer';
-                
-                // Remove any existing listeners and add fresh one
-                musicNote.onclick = function() {
-                    playAudio();
-                };
-            }
-        }
-        
-        function playAudio() {
-            if (!bgMusic) {
-                bgMusic = document.getElementById('bgMusic');
-            }
-            
-            if (bgMusic) {
-                // Try to play
-                bgMusic.play().then(() => {
-                    // Success!
-                    if (musicNote) {
-                        musicNote.innerHTML = '🎵 Now Playing: Maybe by Jay Sean 🎵';
-                        musicNote.style.cursor = 'default';
-                        musicNote.onclick = null; // Remove click handler
-                    }
-                    console.log("Audio playing successfully!");
-                }).catch(error => {
-                    console.log("Audio play failed:", error);
-                    
-                    // If autoplay failed, make sure the click handler is set
-                    if (musicNote) {
-                        musicNote.innerHTML = '🎵 Tap here to play music 🎵';
-                        musicNote.style.cursor = 'pointer';
-                        musicNote.onclick = function() {
-                            playAudio(); // Try again
-                        };
-                    }
-                });
-            }
+            attemptPlay();
         }
 
         function playRomanticSong() {
-            // Just call setupAudio - don't try to autoplay
-            setupAudio();
-            // Don't try to autoplay - browsers block it
-            // Let the user click the music note
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                forceAudioPlay();
+            }, 100);
         }
 
         function stopRomanticSong() {
-            if (bgMusic) {
-                bgMusic.pause();
-                bgMusic.currentTime = 0;
+            const audio = document.getElementById('bgMusic');
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
             }
+            audioPlayAttempted = false;
             
             if (imageInterval) {
                 clearInterval(imageInterval);
@@ -862,26 +710,14 @@
         function setupScrollDetection() {
             galleryPage.addEventListener('wheel', function() {
                 isUserScrolling = true;
-                
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                scrollTimeout = setTimeout(function() {
-                    isUserScrolling = false;
-                }, 2000);
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => isUserScrolling = false, 2000);
             });
             
             galleryPage.addEventListener('touchmove', function() {
                 isUserScrolling = true;
-                
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                scrollTimeout = setTimeout(function() {
-                    isUserScrolling = false;
-                }, 2000);
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => isUserScrolling = false, 2000);
             });
         }
 
@@ -900,33 +736,21 @@
             lightboxImage.src = imgElement.src;
             lightboxImageNumber.textContent = '📸 ' + index + ' / ' + totalImages;
             lightbox.classList.add('active');
-            
-            // Prevent body scrolling when lightbox is open
             document.body.classList.add('lightbox-open');
-            
-            // Pause auto-scroll when lightbox is open
             isUserScrolling = true;
         }
 
         function closeLightbox() {
             lightbox.classList.remove('active');
             lightboxImage.src = '';
-            
-            // Re-enable body scrolling
             document.body.classList.remove('lightbox-open');
-            
-            // Re-enable auto-scroll after closing
             isUserScrolling = false;
         }
 
         function changeImage(direction) {
             let newIndex = currentImageIndex + direction;
-            
-            if (newIndex < 1) {
-                newIndex = totalImages;
-            } else if (newIndex > totalImages) {
-                newIndex = 1;
-            }
+            if (newIndex < 1) newIndex = totalImages;
+            if (newIndex > totalImages) newIndex = 1;
             
             const imageElement = document.getElementById('image-' + newIndex);
             if (imageElement) {
@@ -937,55 +761,33 @@
             }
         }
 
-        // Close lightbox with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
-            
             if (lightbox.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'ArrowRight') changeImage(1);
             }
         });
 
-        // Handle touch events for mobile swipe
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        lightbox.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
-        
-        lightbox.addEventListener('touchend', function(e) {
+        let touchStartX = 0, touchEndX = 0;
+        lightbox.addEventListener('touchstart', (e) => touchStartX = e.changedTouches[0].screenX);
+        lightbox.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-        }, false);
+        });
         
         function handleSwipe() {
             if (!lightbox.classList.contains('active')) return;
-            
             const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // Swipe left - next image
-                changeImage(1);
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                // Swipe right - previous image
-                changeImage(-1);
-            }
+            if (touchEndX < touchStartX - swipeThreshold) changeImage(1);
+            if (touchEndX > touchStartX + swipeThreshold) changeImage(-1);
         }
 
         function loadGalleryImages() {
-            if (imageInterval) {
-                clearInterval(imageInterval);
-                imageInterval = null;
-            }
-            
+            if (imageInterval) clearInterval(imageInterval);
             galleryContainer.innerHTML = '';
-            
             isUserScrolling = false;
             
             // Start with first image
@@ -1000,10 +802,8 @@
                 img.loading = 'lazy';
                 img.onerror = function() {
                     this.src = 'https://via.placeholder.com/200x200/ff9a9e/ffffff?text=Memory+' + i;
-                    console.log('Failed to load: Image_' + i + '.jpeg');
                 };
                 
-                // Add click event to open lightbox
                 galleryItem.onclick = function(e) {
                     e.stopPropagation();
                     const imgElement = this.querySelector('img');
@@ -1021,7 +821,6 @@
             
             imageInterval = setInterval(function() {
                 currentImage++;
-                
                 if (currentImage <= 26) {
                     const galleryItem = document.createElement('div');
                     galleryItem.className = 'gallery-item';
@@ -1033,10 +832,8 @@
                     img.loading = 'lazy';
                     img.onerror = function() {
                         this.src = 'https://via.placeholder.com/200x200/ff9a9e/ffffff?text=Memory+' + currentImage;
-                        console.log('Failed to load: Image_' + currentImage + '.jpeg');
                     };
                     
-                    // Add click event to open lightbox
                     galleryItem.onclick = function(e) {
                         e.stopPropagation();
                         const imgElement = this.querySelector('img');
@@ -1047,26 +844,18 @@
                     galleryItem.appendChild(img);
                     galleryContainer.appendChild(galleryItem);
                     
-                    if (currentImage < 10) {
-                        loadingStatus.textContent = '💖 Each picture tells our story... 💖';
-                    } else if (currentImage < 20) {
-                        loadingStatus.textContent = '✨ Falling in love with you all over again... ✨';
-                    } else if (currentImage < 26) {
-                        loadingStatus.textContent = '💕 Almost done, my love... 💕';
-                    }
+                    if (currentImage < 10) loadingStatus.textContent = '💖 Each picture tells our story... 💖';
+                    else if (currentImage < 20) loadingStatus.textContent = '✨ Falling in love with you all over again... ✨';
+                    else if (currentImage < 26) loadingStatus.textContent = '💕 Almost done, my love... 💕';
                     
                     autoScrollToBottom();
                     
                     if (currentImage === 26) {
                         loadingStatus.textContent = '💖 Thank you for 26 beautiful memories 💖';
                         triggerConfetti();
-                        
                         clearInterval(imageInterval);
                         imageInterval = null;
                     }
-                } else {
-                    clearInterval(imageInterval);
-                    imageInterval = null;
                 }
             }, 1200);
         }
@@ -1076,43 +865,23 @@
             galleryPage.classList.remove('hidden');
             
             setupScrollDetection();
-            playRomanticSong(); // This now just sets up audio, doesn't autoplay
+            playRomanticSong(); // This now attempts autoplay with retries
             loadGalleryImages();
         }
 
         function backToHome() {
             stopRomanticSong();
-            
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = null;
-            }
-            
-            // Close lightbox if open
+            if (scrollTimeout) clearTimeout(scrollTimeout);
             closeLightbox();
-            
             app.classList.remove('hidden');
             galleryPage.classList.add('hidden');
         }
 
         function triggerConfetti() {
-            confetti({
-                particleCount: 150,
-                spread: 90,
-                origin: { y: 0.6 }
-            });
-            
-            setTimeout(function() {
-                confetti({
-                    particleCount: 100,
-                    spread: 60,
-                    origin: { y: 0.6, x: 0.3 }
-                });
-                confetti({
-                    particleCount: 100,
-                    spread: 60,
-                    origin: { y: 0.6, x: 0.7 }
-                });
+            confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+            setTimeout(() => {
+                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6, x: 0.3 } });
+                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6, x: 0.7 } });
             }, 150);
         }
 
@@ -1121,7 +890,6 @@
                 const yesButtonSize = Math.min(16 + (noClicks * 10), 90);
                 const yesButtonPadding = Math.min(15 + (noClicks * 3), 40);
                 const yesButtonHPadding = Math.min(40 + (noClicks * 6), 100);
-                
                 const noButtonSize = Math.max(16 - (noClicks * 1.2), 10);
                 const noButtonPadding = Math.max(15 - (noClicks * 0.8), 8);
                 const noButtonHPadding = Math.max(30 - (noClicks * 1.5), 15);
@@ -1139,21 +907,13 @@
                     </div>
                 `;
                 
-                if (noClicks === 0) {
-                    resetNoButtonPosition();
-                }
+                if (noClicks === 0) resetNoButtonPosition();
             } else {
                 app.innerHTML = `
                     <img src="${secondImg}" alt="Bears kissing">
-                    <div class="success-message">
-                        My Love 💖🎉
-                    </div>
-                    <div class="decoy-paragraph">
-                        ${loveParagraph}
-                    </div>
-                    <button class="play-me-btn" onclick="showGalleryPage()">
-                        Play Me ❤️
-                    </button>
+                    <div class="success-message">My Love 💖🎉</div>
+                    <div class="decoy-paragraph">${loveParagraph}</div>
+                    <button class="play-me-btn" onclick="showGalleryPage()">Play Me ❤️</button>
                 `;
                 
                 for (let i = 0; i < 10; i++) {
@@ -1165,7 +925,6 @@
                         heart.style.animationDuration = '2s';
                         heart.style.fontSize = Math.random() * 40 + 20 + 'px';
                         heartsContainer.appendChild(heart);
-                        
                         setTimeout(() => heart.remove(), 2000);
                     }, i * 200);
                 }
@@ -1176,9 +935,7 @@
             if (noClicks < noPhrases.length - 1) {
                 noClicks++;
                 render();
-                if (noClicks >= 1) {
-                    setTimeout(() => moveNoButton(), 10);
-                }
+                if (noClicks >= 1) setTimeout(() => moveNoButton(), 10);
             }
         }
 
